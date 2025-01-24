@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="379.0" prefWidth="622.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Control">
+   <children>
+      <Pane layoutX="196.0" prefHeight="379.0" prefWidth="426.0" style="-fx-background-color: lightgoldenrodyellow;">
+         <children>
+            <Label layoutX="71.0" layoutY="171.0" text="Password">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7631579041481018" green="0.9157894849777222" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color green="0.8899999856948853" blue="0.7605632543563843" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+            <Label id="usernn" layoutX="66.0" layoutY="115.0" prefHeight="25.0" prefWidth="85.0" text="Username">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7631579041481018" green="0.9157894849777222" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color green="0.9098039269447327" blue="0.6235294342041016" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+            <Button layoutX="213.0" layoutY="308.0" mnemonicParsing="false" onAction="#switchToRegister" text="Register" />
+            <Label layoutX="301.0" layoutY="311.0" text="here." textFill="#0961e3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="58.0" layoutY="311.0" text="Don't have an account?" textFill="#074bfa">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="passWord" layoutX="191.0" layoutY="172.0" prefHeight="25.0" prefWidth="178.0" />
+         </children>
+      </Pane>
+      <HBox layoutX="182.0" prefHeight="50.0" prefWidth="493.0">
+         <children>
+            <ButtonBar prefHeight="50.0" prefWidth="166.0">
+              <buttons>
+                <Button mnemonicParsing="false" text="User" />
+              </buttons>
+            </ButtonBar>
+            <ButtonBar prefHeight="50.0" prefWidth="182.0">
+              <buttons>
+                <Button mnemonicParsing="false" onAction="#switchToAdmin" text="Admin" />
+              </buttons>
+            </ButtonBar>
+         </children>
+      </HBox>
+      <VBox prefHeight="398.0" prefWidth="196.0">
+         <children>
+            <ImageView fitHeight="398.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/Design.jpeg" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <TextField fx:id="userName" layoutX="386.0" layoutY="118.0" prefHeight="26.0" prefWidth="178.0" />
+      <Button fx:id="loginn" defaultButton="true" layoutX="415.0" layoutY="224.0" mnemonicParsing="false" onAction="#login" text="Login">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

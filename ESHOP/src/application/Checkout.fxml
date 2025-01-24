@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="649.0" prefWidth="1110.0" stylesheets="@UserInterface.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CheckoutController">
+   <children>
+      <HBox prefHeight="40.0" prefWidth="1110.0" styleClass="white-background" stylesheets="@UserInterface.css">
+         <children>
+            <Label alignment="CENTER" prefHeight="41.0" prefWidth="167.0" text="E SHOP">
+               <font>
+                  <Font name="Elephant" size="24.0" />
+               </font>
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.10650216042995453" green="0.007699999958276749" blue="0.7699999809265137" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.7699999809265137" green="0.007699999958276749" blue="0.7369800806045532" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+            </Label>
+            <HBox prefHeight="40.0" prefWidth="312.0" />
+            <Pane maxHeight="41.0" prefHeight="41.0" prefWidth="226.0">
+               <children>
+                  <Pane layoutX="350.0" layoutY="-3.0" prefHeight="40.0" prefWidth="283.0">
+                     <children>
+                        <Label fx:id="yourName" alignment="CENTER_RIGHT" layoutY="7.0" prefHeight="25.0" prefWidth="216.0" text="YourName" textFill="#a7b72d">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="40.0" fitWidth="45.0" layoutX="229.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Resources/icons8-account-64.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+         </children>
+      </HBox>
+      <Pane layoutY="40.0" prefHeight="610.0" prefWidth="152.0" styleClass="white-background" stylesheets="@UserInterface.css">
+         <children>
+            <Button layoutX="47.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToDashboard" prefHeight="40.0" prefWidth="104.0" stylesheets="@UserInterface.css" text="Home" textFill="#3915b0">
+               <font>
+                  <Font name="Consolas" size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="transparent" />
+                  <String fx:value="hand" />
+               </styleClass>
+            </Button>
+            <Button layoutX="47.0" layoutY="54.0" mnemonicParsing="false" onAction="#switchToAccount" prefHeight="40.0" prefWidth="104.0" stylesheets="@UserInterface.css" text="Account" textFill="#3915b0">
+               <font>
+                  <Font name="Consolas" size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="transparent" />
+                  <String fx:value="hand" />
+               </styleClass>
+            </Button>
+            <Button layoutX="41.0" layoutY="134.0" mnemonicParsing="false" onAction="#switchToOrders" prefHeight="40.0" prefWidth="104.0" stylesheets="@UserInterface.css" text="Orders" textFill="#3915b0">
+               <font>
+                  <Font name="Consolas" size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="transparent" />
+                  <String fx:value="hand" />
+               </styleClass>
+            </Button>
+            <Button layoutX="41.0" layoutY="174.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="104.0" stylesheets="@UserInterface.css" text="Report" textFill="#3915b0">
+               <font>
+                  <Font name="Consolas" size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="transparent" />
+                  <String fx:value="hand" />
+               </styleClass>
+            </Button>
+            <Button layoutX="41.0" layoutY="94.0" mnemonicParsing="false" onAction="#switchToCart" prefHeight="40.0" prefWidth="104.0" stylesheets="@UserInterface.css" text="Cart" textFill="#3915b0">
+               <font>
+                  <Font name="Consolas" size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="transparent" />
+                  <String fx:value="hand" />
+               </styleClass>
+            </Button>
+            <Button layoutX="10.0" layoutY="538.0" mnemonicParsing="false" onAction="#switchToLogin" prefHeight="40.0" prefWidth="89.0" stylesheets="@UserInterface.css" text="Logout" textFill="#ec0303">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="transparent" />
+                  <String fx:value="hand" />
+               </styleClass>
+            </Button>
+            <ImageView fitHeight="40.0" fitWidth="45.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/icons8-dashboard-64.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="45.0" layoutX="14.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/icons8-account-64.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="45.0" layoutX="14.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/icons8-cart-64.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="45.0" layoutX="14.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/icons8-order-64.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="45.0" layoutX="14.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/icons8-report-64.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="45.0" layoutX="93.0" layoutY="538.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/icons8-logout-64.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <ImageView fitHeight="610.0" fitWidth="1053.0" layoutX="152.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Resources/acc_backgnd.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="166.0" layoutY="45.0" prefHeight="27.0" prefWidth="89.0" text="Checkout" textFill="#516dbc">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <ScrollPane layoutX="166.0" layoutY="375.0" prefHeight="266.0" prefWidth="930.0" styleClass="transparent" stylesheets="@UserInterface.css">
+         <content>
+            <GridPane fx:id="gridAll" hgap="1.0" prefHeight="1.0" prefWidth="1.0" vgap="7.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+         </content></ScrollPane>
+      <Pane layoutX="166.0" layoutY="609.0" prefHeight="40.0" prefWidth="930.0" />
+      <Button layoutX="716.0" layoutY="225.0" mnemonicParsing="false" onAction="#completeCheckout" prefHeight="40.0" prefWidth="364.0" style="-fx-background-color: #d111d4;" styleClass="hand" text="Complete Checkout" textFill="#fcfcfc">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Label layoutX="725.0" layoutY="178.0" prefHeight="40.0" prefWidth="96.0" text="Total:">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="totalLabel" alignment="CENTER_RIGHT" layoutX="821.0" layoutY="178.0" prefHeight="40.0" prefWidth="251.0" text="0$" textFill="#252620">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="166.0" layoutY="79.0" prefHeight="27.0" prefWidth="167.0" text="Shipping Address">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="166.0" layoutY="345.0" prefHeight="27.0" prefWidth="89.0" text="Cart" textFill="#516dbc">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="724.0" layoutY="73.0" prefHeight="40.0" prefWidth="167.0" text="Summery">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="addressField" layoutX="166.0" layoutY="106.0" prefHeight="51.0" prefWidth="321.0">
+         <font>
+            <Font size="16.0" />
+         </font></TextField>
+      <Label layoutX="166.0" layoutY="158.0" prefHeight="27.0" prefWidth="167.0" text="Contact Number">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="contactField" layoutX="165.0" layoutY="185.0" prefHeight="34.0" prefWidth="322.0">
+         <font>
+            <Font size="16.0" />
+         </font></TextField>
+      <Label layoutX="166.0" layoutY="234.0" prefHeight="40.0" prefWidth="167.0" text="Payment Method">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="724.0" layoutY="113.0" prefHeight="27.0" prefWidth="126.0" text="Original Price:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="724.0" layoutY="143.0" prefHeight="27.0" prefWidth="126.0" text="Discounts:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER_RIGHT" layoutX="910.0" layoutY="143.0" prefHeight="27.0" prefWidth="159.0" text="0$">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="orgPriceLabel" alignment="CENTER_RIGHT" layoutX="902.0" layoutY="113.0" prefHeight="27.0" prefWidth="167.0" text="0$">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <CheckBox fx:id="accountCheckBox" layoutX="165.0" layoutY="274.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="182.0" text="Account Balance ">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </CheckBox>
+      <Label fx:id="accountBalanceLabel" layoutX="347.0" layoutY="271.0" prefHeight="40.0" prefWidth="167.0" text="(0$)">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="170.0" layoutY="305.0" prefHeight="40.0" prefWidth="312.0" text="Debit / Credit Card (Not Available Yet)">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

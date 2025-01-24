@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="379.0" prefWidth="622.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Control">
+   <children>
+      <Pane layoutX="196.0" prefHeight="379.0" prefWidth="426.0" style="-fx-background-color: lightgoldenrodyellow;">
+         <children>
+            <Label layoutX="71.0" layoutY="171.0" text="Password">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7631579041481018" green="0.9157894849777222" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color green="0.8899999856948853" blue="0.7605632543563843" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+            <PasswordField fx:id="AdminpassWord" layoutX="191.0" layoutY="172.0" prefHeight="25.0" prefWidth="178.0" />
+            <Label layoutX="136.0" layoutY="103.0" text="Welcome Admin">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7631579041481018" green="0.9157894849777222" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color green="0.8899999856948853" blue="0.7605632543563843" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+         </children>
+      </Pane>
+      <HBox layoutX="182.0" prefHeight="50.0" prefWidth="493.0">
+         <children>
+            <ButtonBar prefHeight="50.0" prefWidth="166.0">
+              <buttons>
+                <Button mnemonicParsing="false" onAction="#switchToLogin" text="User" />
+              </buttons>
+            </ButtonBar>
+            <ButtonBar prefHeight="50.0" prefWidth="182.0">
+              <buttons>
+                <Button mnemonicParsing="false" text="Admin" />
+              </buttons>
+            </ButtonBar>
+         </children>
+      </HBox>
+      <VBox prefHeight="398.0" prefWidth="196.0">
+         <children>
+            <ImageView fitHeight="398.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/Design.jpeg" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <Button fx:id="adminLoginButton" defaultButton="true" layoutX="415.0" layoutY="224.0" mnemonicParsing="false" onAction="#AdminLogin" text="Login">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

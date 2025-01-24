@@ -1,0 +1,25 @@
+.button {
+    -fx-background-color: mintcream; /* Green background */
+    -fx-text-fill: midnightblue; /* White text color */
+    -fx-font-size: 14px; /* Font size */
+    -fx-padding: 5px 14px; /* Padding */
+    -fx-border-radius: 0px; /* Border radius */
+    -fx-cursor: hand; /* Cursor style on hover */
+    -fx-background-radius: 13;
+}
+
+.text-field {
+    -fx-background-color: white;
+    -fx-border-color: darkorange;
+    -fx-border-radius: 5;
+    -fx-padding: 4;
+}
+
+#loginn {
+    -fx-background-color: green; /* Green background */
+    -fx-text-fill: yellow; /* White text color */
+    -fx-font-size: 14px; /* Font size */
+    -fx-padding: 5px 16px; /* Padding */
+    -fx-border-radius: 1px; /* Border radius */
+    -fx-cursor: hand; /* Cursor style on hover */
+}

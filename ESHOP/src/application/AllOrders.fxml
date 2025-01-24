@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="649.0" prefWidth="1083.0" style="-fx-background-color: white;" stylesheets="@UserInterface.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AllOrdersController">
+   <children>
+      <HBox prefHeight="40.0" prefWidth="1083.0" style="-fx-background-color: #4a90e2;" stylesheets="@UserInterface.css">
+         <children>
+            <Label alignment="CENTER" prefHeight="41.0" prefWidth="167.0" text="E SHOP" textFill="WHITE">
+               <font>
+                  <Font name="Elephant" size="24.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="40.0" prefWidth="312.0" />
+            <Pane maxHeight="41.0" prefHeight="41.0" prefWidth="226.0">
+               <children>
+                  <Pane layoutX="350.0" layoutY="-3.0" prefHeight="40.0" prefWidth="254.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" layoutX="-32.0" layoutY="8.0" prefHeight="25.0" prefWidth="216.0" text="Admin" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="40.0" fitWidth="45.0" layoutX="192.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Resources/icons8-account-64.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+         </children>
+      </HBox>
+      <Pane layoutY="40.0" prefHeight="610.0" prefWidth="152.0" styleClass="white-background" stylesheets="@UserInterface.css">
+         <children>
+            <Button layoutY="14.0" mnemonicParsing="false" onAction="#switchToDashboard" prefHeight="40.0" prefWidth="152.0" stylesheets="@UserInterface.css" text="  Home" textFill="#4a90e2">
+               <font>
+                  <Font name="Consolas Bold" size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="transparent" />
+                  <String fx:value="hover-button" />
+               </styleClass>
+            </Button>
+            <Button layoutY="56.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="152.0" stylesheets="@UserInterface.css" text="   Orders" textFill="#4a90e2">
+               <font>
+                  <Font name="Consolas Bold" size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="transparent" />
+                  <String fx:value="hover-button" />
+               </styleClass>
+            </Button>
+            <Button layoutY="99.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="152.0" stylesheets="@UserInterface.css" text="   Report" textFill="#4a90e2">
+               <font>
+                  <Font name="Consolas Bold" size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="transparent" />
+                  <String fx:value="hover-button" />
+               </styleClass>
+            </Button>
+            <Button layoutX="10.0" layoutY="538.0" mnemonicParsing="false" onAction="#switchToLogin" prefHeight="40.0" prefWidth="89.0" stylesheets="@UserInterface.css" text="Logout" textFill="#ef0707">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="transparent" />
+                  <String fx:value="hand" />
+               </styleClass>
+            </Button>
+            <ImageView fitHeight="40.0" fitWidth="45.0" layoutX="93.0" layoutY="538.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/icons8-logout-64.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="34.0" fitWidth="40.0" layoutX="17.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/icons8-dashboard-64.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="34.0" fitWidth="34.0" layoutX="17.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/icons8-order-64.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="34.0" fitWidth="34.0" layoutX="17.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/icons8-report-64.png" />
+               </image>
+            </ImageView>
+            <Separator layoutX="-1.0" layoutY="53.0" prefHeight="3.0" prefWidth="155.0" />
+            <Separator layoutX="-1.0" layoutY="98.0" prefHeight="3.0" prefWidth="155.0" />
+            <Separator layoutX="150.0" orientation="VERTICAL" prefHeight="610.0" prefWidth="10.0" />
+         </children>
+      </Pane>
+      <ScrollPane layoutX="153.0" layoutY="40.0" prefHeight="610.0" prefWidth="930.0">
+         <content>
+            <GridPane fx:id="gridAll" hgap="1.0" prefHeight="1.0" prefWidth="1.0" vgap="7.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+         </content></ScrollPane>
+   </children>
+</AnchorPane>

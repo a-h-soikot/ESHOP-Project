@@ -1,0 +1,67 @@
+.white-background {
+    -fx-background-color: white;
+}
+
+.transparent {
+    -fx-background-color: rgba(0, 0, 0, 0);
+}
+
+.hand {
+	-fx-cursor: hand;
+}
+
+/* Default style for buttons with the hover-button class */
+.hover-button {
+    -fx-cursor: hand; /* Change cursor to hand on hover */
+}
+
+/* Hover effect for buttons with the hover-button class */
+.hover-button:hover {
+    -fx-background-color: white; /* Light gray background on hover */
+    
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.5, 0, 1); /* Add shadow */
+}
+
+.round-layout {
+    -fx-border-radius: 30;
+    -fx-border-color: gray;
+}
+
+.no-border {
+	-fx-border-style: none;
+}
+
+.selected {
+    -fx-background-color: #F3F3F3;
+}
+
+.mouse-moved:hover {
+    -fx-background-color: #F3F3F3;
+}
+
+.shadow {
+	-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);
+}
+
+.chosen-item-card {
+	-fx-background-color: orange;
+	-fx-border-radius: 15;
+}
+
+.item-card {
+	
+	-fx-background-radius: 15;
+	-fx-background-color: white;
+}
+
+.color1 {
+    -fx-background-color: #d205f2;
+}
+
+.color2 {
+	-fx-background-color: #c48d28;
+}
+
+.online-shopping {
+	-fx-background-color: #BAEAC3;
+}

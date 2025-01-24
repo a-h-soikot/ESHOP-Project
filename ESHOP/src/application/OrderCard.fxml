@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="121.025" prefWidth="905.0" stylesheets="@UserInterface.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.OrderCardController">
+   <children>
+      <ImageView fx:id="productImage" fitHeight="132.668" fitWidth="153.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Resources/MainLogo2.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="productName" layoutX="187.0" layoutY="13.808" prefHeight="28.429" prefWidth="260.0" text="Product name will be here" textFill="#807d6e">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="187.0" layoutY="42.237" prefHeight="28.429" prefWidth="89.0" text="Quantity : " textFill="#9e8a8a">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="187.0" layoutY="84.474" prefHeight="34.114" prefWidth="114.0" text="Ordered by :" textFill="#9e8a8a">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="customerName" layoutX="301.0" layoutY="84.474" prefHeight="34.114" prefWidth="183.0" text="customername" textFill="#6f714a">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="187.0" layoutY="65.98" prefHeight="28.429" prefWidth="62.0" text="Price : " textFill="#9e8a8a">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="productPrice" layoutX="246.0" layoutY="65.98" prefHeight="28.429" prefWidth="70.0" text="20$" textFill="#9e8a8a">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="851.0" layoutY="63.356" text="Label" textFill="#fffefe" />
+      <Label fx:id="quantityLabel" layoutX="277.0" layoutY="44.674" prefHeight="23.555" prefWidth="114.0" text="x1" textFill="#9e8a8a">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="28.429" fitWidth="28.0" layoutX="540.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Resources/icons8-location-64.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="28.429" fitWidth="28.0" layoutX="540.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Resources/icons8-phone-50.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="500.0" layoutY="91.0" text="Ordered at:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="address" layoutX="591.0" layoutY="20.0" prefHeight="26.0" prefWidth="300.0" text="Label">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label fx:id="phone" layoutX="591.0" layoutY="56.0" prefHeight="26.0" prefWidth="300.0" text="Label">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label fx:id="orderDate" layoutX="591.0" layoutY="88.0" prefHeight="26.0" prefWidth="300.0" text="Label">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+   </children>
+   <styleClass>
+      <String fx:value="item-card" />
+      <String fx:value="shadow" />
+   </styleClass>
+</AnchorPane>
