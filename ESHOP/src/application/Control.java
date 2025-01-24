@@ -224,13 +224,9 @@ public class Control {
 	public void switchToDashboard (ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("UserInterface.fxml"));
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		
-		//String css = this.getClass().getResource("UserInterface.css").toExternalForm();
 		Scene scene = new Scene(root);
-		//scene.getStylesheets().add(css);
 		stage.setScene(scene);
 		stage.setX(200); stage.setY(80);
-		
 		stage.show(); 
 	}
 	

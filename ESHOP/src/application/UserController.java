@@ -98,11 +98,6 @@ public class UserController implements Initializable {
 		yourName.setText(Control.username);
 	}
 	
-	public void switchToLogin (ActionEvent event) throws IOException {
-		Control object = new Control();
-		object.switchToLogin(event);
-	}
-	
 	public void setChosenItem (CardController card) {
 		itemLabel.setText(card.getName());
 		itemImage.setImage(card.getImg());
@@ -112,15 +107,6 @@ public class UserController implements Initializable {
 		this.pid = card.getId();
 		availableLabel.setText(Integer.toString(card.getQuantity()) + " available");
 		available_product = card.getQuantity();
-	}
-	
-	public void switchToAccount (ActionEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("Account.fxml"));
-		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.setX(200); stage.setY(80);
-		stage.show();
 	}
 	
 	@SuppressWarnings("resource")
@@ -255,12 +241,24 @@ public class UserController implements Initializable {
 		}
 	}
 	
+	public void switchToLogin (ActionEvent event) throws IOException {
+		Control object = new Control();
+		object.switchToLogin(event);
+	}
+	
+	public void switchToAccount (ActionEvent event) throws IOException {
+		Parent root = FXMLLoader.load(getClass().getResource("Account.fxml"));
+		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
 	public void switchToOrders (ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("Orders.fxml"));
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
-		stage.setX(200); stage.setY(80);
 		stage.show();
 	}
 	
@@ -269,7 +267,6 @@ public class UserController implements Initializable {
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
-		stage.setX(200); stage.setY(80);
 		stage.show();
 	}
 }

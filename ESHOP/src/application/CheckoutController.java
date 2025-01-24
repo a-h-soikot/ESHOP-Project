@@ -312,8 +312,11 @@ public class CheckoutController implements Initializable {
 	}
 	
 	public void switchToDashboard (ActionEvent event) throws IOException {
-		Control control = new Control();
-		control.switchToDashboard(event);
+		Parent root = FXMLLoader.load(getClass().getResource("UserInterface.fxml"));
+		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show(); 
 	}
 	
 	public void switchToAccount (ActionEvent event) throws IOException {
@@ -321,7 +324,6 @@ public class CheckoutController implements Initializable {
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
-		stage.setX(200); stage.setY(80);
 		stage.show();
 	}
 	
@@ -330,7 +332,6 @@ public class CheckoutController implements Initializable {
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
-		stage.setX(200); stage.setY(80);
 		stage.show();
 	}
 	
@@ -344,7 +345,6 @@ public class CheckoutController implements Initializable {
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
-		stage.setX(200); stage.setY(80);
 		stage.show();
 	}
 }
