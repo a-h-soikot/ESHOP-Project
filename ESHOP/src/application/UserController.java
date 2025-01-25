@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -60,42 +62,149 @@ public class UserController implements Initializable {
 	
     MyListener listener;
 
-		@Override
-		public void initialize(URL arg0, ResourceBundle arg1) {
-
-		listener = new MyListener () {
-			@Override
-			public void ShowItemDetails (CardController card) {
-				setChosenItem(card);
-			}
-		};
-
-		importItem();
-		
-		CardController cardControl = new CardController(); 
-		Parent root = null;
-		int row = 0, col = 0;
-		for(int i = 0; i < 8; i++) {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("cards.fxml"));
-			try {
-				root = loader.load();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			cardControl = loader.getController();
-			cardControl.setName("Product " + (i+1));
-			cardControl.setImg2();
-			cardControl.setListener(listener);
-			
-			if(col%4 == 0) {
-				col = 0; row++;
-			}
-			
-			gridAll.add(root, col+1, row+1);
-			col++;
-		}
-		
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
 		yourName.setText(Control.username);
+		
+		importTopPicks();
+		
+		importAllItems();
+	}
+	
+	void importTopPicks() {
+	    Task<Void> task = new Task<>() {
+	        @Override
+	        protected Void call() throws Exception {
+	            String query = "SELECT * FROM toppicks inner join products on toppicks.pid = products.id";
+	            int added = 0;
+	            
+	            try (PreparedStatement statement = Control.getConnection().prepareStatement(
+	                     query, 
+	                     ResultSet.TYPE_SCROLL_INSENSITIVE, 
+	                     ResultSet.CONCUR_READ_ONLY)) {
+	                
+	                ResultSet result = statement.executeQuery();
+	                
+	                // Move to the last row
+	                result.last();
+	                int rowCount = result.getRow();
+	                
+	                // Traverse from last to first
+	                for (int i = rowCount; i > 0; i--) {
+	                    result.absolute(i);
+	                    final int pid = result.getInt("id");
+	                    final int quantity = result.getInt("quantity");
+	                    final String name = result.getString("name");
+	                    final String path = result.getString("path");
+	                    final double price = result.getDouble("price");
+	                    final int index = added++;
+	                    
+	                    Platform.runLater(() -> {
+	                        listener = new MyListener() {
+	                            @Override
+	                            public void ShowItemDetails(CardController card) {
+	                                setChosenItem(card);
+	                            }
+	                        };
+	                        
+	                        try {
+	                            FXMLLoader loader = new FXMLLoader(getClass().getResource("cards.fxml"));
+	                            Parent root = loader.load();
+	                            
+	                            CardController cardControl = loader.getController();
+	                            
+	                            cardControl.setId(pid);
+	                            cardControl.setQuantity(quantity);
+	                            cardControl.setName(name);
+	                            cardControl.setImg(path);
+	                            cardControl.setPrice(price);
+	                            cardControl.setListener(listener);
+	                            
+	                            gridTop.add(root, index, 1);
+	                        } catch (IOException e) {
+	                            e.printStackTrace();
+	                        }
+	                    });
+
+	                }
+	            }
+	            return null;
+	        }
+	    };
+	    
+	    new Thread(task).start();
+	}
+
+	public void importAllItems() {
+	    Task<Void> task = new Task<>() {
+	        @Override
+	        protected Void call() throws Exception {
+	            String query = "SELECT * FROM products";
+	            int row = 0, col = 0;
+	            
+	            try (PreparedStatement statement = Control.getConnection().prepareStatement(
+	                     query, 
+	                     ResultSet.TYPE_SCROLL_INSENSITIVE, 
+	                     ResultSet.CONCUR_READ_ONLY)) {
+	                
+	                ResultSet result = statement.executeQuery();
+	                
+	                // Move to the last row
+	                result.last();
+	                int rowCount = result.getRow();
+	                
+	                // Traverse from last to first
+	                for (int i = rowCount; i > 0; i--) {
+	                    result.absolute(i);
+	                    
+	                    final int pid = result.getInt("id");
+	                    final int quantity = result.getInt("quantity");
+	                    final String name = result.getString("name");
+	                    final String path = result.getString("path");
+	                    final double price = result.getDouble("price");
+	                    final int currentRow = row;
+	                    final int currentCol = col;
+	                    
+	                    Platform.runLater(() -> {
+	                        listener = new MyListener() {
+	                            @Override
+	                            public void ShowItemDetails(CardController card) {
+	                                setChosenItem(card);
+	                            }
+	                        };
+	                        
+	                        try {
+	                            FXMLLoader loader = new FXMLLoader(getClass().getResource("cards.fxml"));
+	                            Parent root = loader.load();
+	                            
+	                            CardController cardControl = loader.getController();
+	                            
+	                            cardControl.setId(pid);
+	                            cardControl.setQuantity(quantity);
+	                            cardControl.setName(name);
+	                            cardControl.setImg(path);
+	                            cardControl.setPrice(price);
+	                            cardControl.setListener(listener);
+	                            
+	                            gridAll.add(root, currentCol + 1, currentRow + 1);
+	                        } catch (IOException e) {
+	                            e.printStackTrace();
+	                        }
+	                    });
+	                    
+	                    col++;
+	                    if (col % 4 == 0) {
+	                        col = 0;
+	                        row++;
+	                    }
+	             
+	                }
+	            }
+	            return null;
+	        }
+	    };
+	    
+	    new Thread(task).start();
 	}
 	
 	public void setChosenItem (CardController card) {
@@ -201,45 +310,6 @@ public class UserController implements Initializable {
         alert.showAndWait();
     }
 	
-	void importItem () {
-		int added = 0;
-		String query = "SELECT * FROM products";
-		
-		try {
-			PreparedStatement statement = Control.getConnection().prepareStatement(query);
-			ResultSet result = statement.executeQuery();
-			
-			while(result.next()) {
-				added++; Parent root = null;
-				
-				listener = new MyListener () {
-					@Override
-					public void ShowItemDetails (CardController card) {
-						setChosenItem(card);
-					}
-				};
-				
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("cards.fxml"));
-				try {
-					root = loader.load();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				CardController cardControl = loader.getController();
-				
-				cardControl.setId(result.getInt("id"));
-				cardControl.setQuantity(result.getInt("quantity"));
-				cardControl.setName(result.getString("name"));
-				cardControl.setImg(result.getString("path"));
-				cardControl.setPrice(result.getDouble("price"));
-				cardControl.setListener(listener);
-				
-				gridTop.add(root, added, 1);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
 	
 	public void switchToLogin (ActionEvent event) throws IOException {
 		Control object = new Control();
