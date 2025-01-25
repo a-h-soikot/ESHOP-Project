@@ -76,7 +76,7 @@ public class UserController implements Initializable {
 	        @Override
 	        protected Void call() throws Exception {
 	            String query = "SELECT * FROM toppicks inner join products on toppicks.pid = products.id";
-	            int added = 0;
+	           
 	            
 	            try (PreparedStatement statement = Control.getConnection().prepareStatement(
 	                     query, 
@@ -88,6 +88,7 @@ public class UserController implements Initializable {
 	                // Move to the last row
 	                result.last();
 	                int rowCount = result.getRow();
+	                int added = 0;
 	                
 	                // Traverse from last to first
 	                for (int i = rowCount; i > 0; i--) {
@@ -97,7 +98,7 @@ public class UserController implements Initializable {
 	                    final String name = result.getString("name");
 	                    final String path = result.getString("path");
 	                    final double price = result.getDouble("price");
-	                    final int index = added++;
+	                    final int index = added + 1;
 	                    
 	                    Platform.runLater(() -> {
 	                        listener = new MyListener() {
@@ -121,11 +122,13 @@ public class UserController implements Initializable {
 	                            cardControl.setListener(listener);
 	                            
 	                            gridTop.add(root, index, 1);
+	                          
 	                        } catch (IOException e) {
 	                            e.printStackTrace();
 	                        }
+	                       
 	                    });
-
+	                    added += 1;
 	                }
 	            }
 	            return null;
@@ -259,12 +262,12 @@ public class UserController implements Initializable {
 				
 				subtractQuantity(quantity);
 				
-				query = "INSERT INTO cart (pid, quantity, who) VALUES(?,?,?)";
+				query = "INSERT INTO cart (pid, who, quantity) VALUES(?,?,?)";
 				statement = Control.getConnection().prepareStatement(query);
 				
 				statement.setInt(1, this.pid); 
-				statement.setInt(2, quantity);
-				statement.setString(3, Control.username);
+				statement.setString(2, Control.username);
+				statement.setInt(3, quantity);
 				
 				statement.execute();
 				SuccessDialog();
