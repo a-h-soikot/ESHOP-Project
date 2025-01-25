@@ -10,16 +10,15 @@
 	-fx-cursor: hand;
 }
 
-/* Default style for buttons with the hover-button class */
 .hover-button {
-    -fx-cursor: hand; /* Change cursor to hand on hover */
+    -fx-cursor: hand;
+    -fx-text-fill: #4a90e2;
 }
 
-/* Hover effect for buttons with the hover-button class */
 .hover-button:hover {
-    -fx-background-color: white; /* Light gray background on hover */
-    
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.5, 0, 1); /* Add shadow */
+    -fx-background-color: #4a90e2;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.5, 0, 1);
 }
 
 .round-layout {
