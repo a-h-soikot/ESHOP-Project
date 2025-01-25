@@ -99,8 +99,6 @@ public class AllOrdersController implements Initializable {
     }
 
 
-
-	
 	public void switchToDashboard (ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("AdminInterface.fxml"));
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();

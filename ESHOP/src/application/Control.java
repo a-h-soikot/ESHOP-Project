@@ -1,8 +1,6 @@
 package application;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -17,13 +15,11 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert.AlertType;
 
 public class Control {
-	private Stage stage; 
+	private Stage stage;
 	private Scene scene;
 	
 	private static final String url = "jdbc:mysql://localhost:3306/eshop";
@@ -90,7 +86,6 @@ public class Control {
 				String password = result.getString("password");
 				if(pass.equals(password)) {
 					System.out.println("Login Successful");
-					//PlaySound(); 
 					switchToDashboard(event);
 				} else {
 					showLoginErrorAlert();
@@ -251,7 +246,6 @@ public class Control {
 		scene = new Scene(root);
 		scene.getStylesheets().add(css);
 		stage.setScene(scene);
-		//stage.setX(450); stage.setY(135);
 		stage.show(); 
 	}
 	
@@ -267,27 +261,4 @@ public class Control {
 			showLoginErrorAlert();
 		}
 	}
-	
-
-	 public void PlaySound() {
-		 try {
-	            String audioFilePath = "C:\\Users\\ahsoi\\eclipse-workspace\\HelloFX\\src\\Resources\\collect-ring-15982.mp3";
-	            
-	            File audioFile = new File(audioFilePath);
-	            if (!audioFile.exists()) {
-	                System.out.println("Audio file not found: " + audioFilePath);
-	                return;
-	            }
-	            
-	            URI uri = audioFile.toURI();
-	            String mediaPath = uri.toString();
-
-	            Media media = new Media(mediaPath);
-	            MediaPlayer mediaPlayer = new MediaPlayer(media);
-
-	            mediaPlayer.play();
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }
-	 }
 }
