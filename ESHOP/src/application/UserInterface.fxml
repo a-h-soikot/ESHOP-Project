@@ -200,16 +200,12 @@
       </Label>
       <AnchorPane layoutX="873.0" layoutY="199.0" prefHeight="252.0" prefWidth="226.0" stylesheets="@UserInterface.css">
          <children>
-            <ImageView fx:id="itemImage" fitHeight="268.0" fitWidth="216.0" layoutX="5.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Resources/MainLogo2.jpg" />
-               </image>
-            </ImageView>
-            <Label fx:id="itemLabel" alignment="CENTER" layoutX="13.0" layoutY="223.0" prefHeight="27.0" prefWidth="200.0" text="This Label">
+            <ImageView fx:id="itemImage" fitHeight="268.0" fitWidth="216.0" layoutX="5.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="itemLabel" alignment="CENTER" layoutX="13.0" layoutY="223.0" prefHeight="27.0" prefWidth="200.0">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font></Label>
-            <Label fx:id="selectedPrice" alignment="TOP_RIGHT" layoutX="167.0" layoutY="-1.0" prefHeight="26.0" prefWidth="63.0" text="Label">
+            <Label fx:id="selectedPrice" alignment="TOP_RIGHT" layoutX="149.0" layoutY="-1.0" prefHeight="27.0" prefWidth="72.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
