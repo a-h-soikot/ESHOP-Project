@@ -250,7 +250,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="49.0" layoutY="57.0" text="on Orders over 20$">
+            <Label layoutX="44.0" layoutY="57.0" prefHeight="20.0" prefWidth="132.0" text="on Orders over 100$">
                <font>
                   <Font size="14.0" />
                </font>

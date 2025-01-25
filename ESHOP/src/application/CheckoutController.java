@@ -48,9 +48,14 @@ public class CheckoutController implements Initializable {
 	@FXML
     private Label yourName;
 	
+	@FXML
+	private Label delivery_charge_label;
+	
 	MyListener2 listener;
 	
 	private double totalPrice;
+	
+	private final double delivery_charge = 5.00;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -139,9 +144,22 @@ public class CheckoutController implements Initializable {
 			
 			if(result.next()) {
 				double total_amount = result.getDouble("total_cost");
-				this.totalLabel.setText(Double.toString(total_amount) + "$");
+				double total_payable = total_amount + delivery_charge;
+				
 				this.orgPriceLabel.setText(Double.toString(total_amount) + "$");
-				this.totalPrice = total_amount;
+				this.delivery_charge_label.setText(Double.toString(delivery_charge) + "$");
+				
+				if(total_amount > 100) {
+					total_payable -= delivery_charge;
+					this.delivery_charge_label.getStyleClass().add("strikethrough");
+				} else {
+					delivery_charge_label.getStyleClass().remove("strikethrough");
+				}
+				
+				this.totalLabel.setText(Double.toString(total_payable) + "$");
+	
+				
+				this.totalPrice = total_payable;
 			}
 
 		} catch (SQLException e) {

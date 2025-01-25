@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="177.0" prefWidth="165.0" stylesheets="@UserInterface.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="171.0" prefWidth="165.0" stylesheets="@UserInterface.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CardController">
    <children>
       <VBox layoutX="11.2" layoutY="12.0" prefHeight="163.0" prefWidth="143.0" styleClass="white-background" stylesheets="@UserInterface.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <children>
@@ -19,14 +19,14 @@
             </ImageView>
             <Label fx:id="productName" alignment="TOP_CENTER" prefHeight="28.0" prefWidth="166.0" text="Label">
                <font>
-                  <Font name="System Bold" size="16.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Label>
          </children>
       </VBox>
       <Label fx:id="productPrice" alignment="TOP_RIGHT" layoutX="85.0" layoutY="1.0" prefHeight="42.0" prefWidth="79.0" text="20$">
          <font>
-            <Font name="System Bold Italic" size="20.0" />
+            <Font name="System Bold Italic" size="16.0" />
          </font>
       </Label>
    </children>
