@@ -2,6 +2,7 @@
 
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
@@ -127,7 +128,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="191.0" layoutY="185.0" prefHeight="23.0" prefWidth="104.0" text="Quantity" textFill="#e78640">
+      <Label layoutX="183.0" layoutY="185.0" prefHeight="26.0" prefWidth="112.0" text="Quantity" textFill="#e78640">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -140,5 +141,10 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
+      <CheckBox fx:id="TopPickCheckBox" layoutX="184.0" layoutY="233.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="174.0" text="Add to TopPicks" textFill="#6ea3dc">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </CheckBox>
    </children>
 </AnchorPane>

@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +19,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.CheckBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -26,6 +29,9 @@ public class AdminController implements Initializable {
 
     @FXML
     private ImageView showImg;
+    
+    @FXML
+    private CheckBox TopPickCheckBox;
 
     @FXML
     private Label yourName;
@@ -83,7 +89,7 @@ public class AdminController implements Initializable {
     	
     	try {
 
-			PreparedStatement statement = Control.getConnection().prepareStatement(query);
+			PreparedStatement statement = Control.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			
 			statement.setString(1, productname.getText()); 
 			statement.setDouble(2, Double.parseDouble(productprice.getText()));
@@ -91,8 +97,33 @@ public class AdminController implements Initializable {
 			statement.setInt(4, Integer.parseInt(productquantity.getText()));
 			
 			statement.execute();
+			
+			if(TopPickCheckBox.isSelected()) {
+				ResultSet generatedKeys = statement.getGeneratedKeys();
+				if(generatedKeys.next()) {
+					int pid = generatedKeys.getInt(1);
+					insertIntoTopPicks(pid);
+				}
+			}
+			
 			SuccessDialog();
 			clearFields();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    }
+    
+    public void insertIntoTopPicks(int pid) {
+    	String query = "INSERT INTO toppicks (pid) VALUES(?)";
+    	
+    	try {
+
+			PreparedStatement statement = Control.getConnection().prepareStatement(query);
+			
+			statement.setInt(1, pid);
+			
+			statement.execute();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -104,6 +135,8 @@ public class AdminController implements Initializable {
         productname.clear();
         productprice.clear();
         productquantity.clear();
+        
+        TopPickCheckBox.setSelected(false);
 
         path = null;
     }
