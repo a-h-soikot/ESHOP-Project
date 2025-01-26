@@ -17,6 +17,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert.AlertType;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class Control {
 	private Stage stage;
@@ -64,11 +66,32 @@ public class Control {
     @FXML
     private TextField reguserName;
     
+    public static String hashPassword(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hashBytes = md.digest(password.getBytes());
+            
+            StringBuilder hexString = new StringBuilder();
+            for (byte hashByte : hashBytes) {
+                String hex = Integer.toHexString(0xff & hashByte);
+                if (hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("SHA-256 Encryption Failed", e);
+        }
+    }
+
+    public static boolean verifyPassword(String inputPassword, String storedHash) {
+        return hashPassword(inputPassword).equals(storedHash);
+    }
+    
 	
 	public void login (ActionEvent event) throws IOException {
 		String name = userName.getText();
-		String pass = passWord.getText();
-		if (name.isEmpty() || pass.isEmpty()) {
+		String input_password = passWord.getText();
+		if (name.isEmpty() || input_password.isEmpty()) {
 			showLoginErrorAlert(); return ;
 		}
 		
@@ -84,7 +107,7 @@ public class Control {
 			
 			if (result.next()) {
 				String password = result.getString("password");
-				if(pass.equals(password)) {
+				if(verifyPassword(input_password, password)) {
 					System.out.println("Login Successful");
 					switchToDashboard(event);
 				} else {
@@ -99,7 +122,7 @@ public class Control {
 		}
 	}
 	
-	public void insert_user (String name, String username, String pass, String mail) {
+	public void insert_user (String name, String username, String input_password, String mail) {
 		
 		String query = "INSERT INTO users (username, name, password, email) VALUES(?,?,?,?)";
 		
@@ -108,7 +131,7 @@ public class Control {
 			PreparedStatement statement = connection.prepareStatement(query);
 			
 			statement.setString(1, username); statement.setString(2, name);
-			statement.setString(3, pass); statement.setString(4, mail);
+			statement.setString(3, hashPassword(input_password)); statement.setString(4, mail);
 			
 			statement.execute();
 			showRegistrationSuccessDialog();
