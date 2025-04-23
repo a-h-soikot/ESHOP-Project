@@ -75,7 +75,7 @@ public class OrderCardController {
     }
     
     public void setPrice(String price) {
-    	productPrice.setText(price);
+    	productPrice.setText(price + "$");
     }
     
     public void setAdress(String location) {

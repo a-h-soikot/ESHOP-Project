@@ -62,7 +62,7 @@
                   </LinearGradient>
                </textFill>
             </Label>
-            <Button layoutX="213.0" layoutY="308.0" mnemonicParsing="false" onAction="#switchToRegister" text="Register" />
+            <Button layoutX="213.0" layoutY="308.0" mnemonicParsing="false" onAction="#switchToRegister" stylesheets="@application.css" text="Register" />
             <Label layoutX="301.0" layoutY="311.0" text="here." textFill="#0961e3">
                <font>
                   <Font size="14.0" />
@@ -73,19 +73,19 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <PasswordField fx:id="passWord" layoutX="191.0" layoutY="172.0" prefHeight="25.0" prefWidth="178.0" />
+            <PasswordField fx:id="passWord" layoutX="191.0" layoutY="172.0" prefHeight="25.0" prefWidth="178.0" stylesheets="@application.css" />
          </children>
       </Pane>
       <HBox layoutX="182.0" prefHeight="50.0" prefWidth="493.0">
          <children>
             <ButtonBar prefHeight="50.0" prefWidth="166.0">
               <buttons>
-                <Button mnemonicParsing="false" text="User" />
+                <Button mnemonicParsing="false" stylesheets="@application.css" text="User" />
               </buttons>
             </ButtonBar>
             <ButtonBar prefHeight="50.0" prefWidth="182.0">
               <buttons>
-                <Button mnemonicParsing="false" onAction="#switchToAdmin" text="Admin" />
+                <Button mnemonicParsing="false" onAction="#switchToAdmin" stylesheets="@application.css" text="Admin" />
               </buttons>
             </ButtonBar>
          </children>
@@ -99,8 +99,8 @@
             </ImageView>
          </children>
       </VBox>
-      <TextField fx:id="userName" layoutX="386.0" layoutY="118.0" prefHeight="26.0" prefWidth="178.0" />
-      <Button fx:id="loginn" defaultButton="true" layoutX="415.0" layoutY="224.0" mnemonicParsing="false" onAction="#login" text="Login">
+      <TextField fx:id="userName" layoutX="386.0" layoutY="118.0" prefHeight="26.0" prefWidth="178.0" stylesheets="@application.css" />
+      <Button fx:id="loginn" defaultButton="true" layoutX="415.0" layoutY="224.0" mnemonicParsing="false" onAction="#login" stylesheets="@application.css" text="Login">
          <font>
             <Font size="13.0" />
          </font>

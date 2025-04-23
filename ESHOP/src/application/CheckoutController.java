@@ -11,16 +11,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 
 public class CheckoutController implements Initializable {
 	
@@ -144,6 +139,16 @@ public class CheckoutController implements Initializable {
 			
 			if(result.next()) {
 				double total_amount = result.getDouble("total_cost");
+				
+				if(total_amount < 1) {
+					this.orgPriceLabel.setText("0$");
+					delivery_charge_label.getStyleClass().remove("strikethrough");
+					this.delivery_charge_label.setText("0$");
+					this.totalLabel.setText("0$");
+					this.totalPrice = 0;
+					return;
+				}
+				
 				double total_payable = total_amount + delivery_charge;
 				
 				this.orgPriceLabel.setText(Double.toString(total_amount) + "$");
@@ -153,13 +158,15 @@ public class CheckoutController implements Initializable {
 					total_payable -= delivery_charge;
 					this.delivery_charge_label.getStyleClass().add("strikethrough");
 				} else {
-					delivery_charge_label.getStyleClass().remove("strikethrough");
+					this.delivery_charge_label.getStyleClass().remove("strikethrough");
 				}
 				
 				this.totalLabel.setText(Double.toString(total_payable) + "$");
 	
 				
 				this.totalPrice = total_payable;
+			} else {
+				this.delivery_charge_label.setText("0$");
 			}
 
 		} catch (SQLException e) {
@@ -177,14 +184,14 @@ public class CheckoutController implements Initializable {
 		String contact = contactField.getText();
 		
 		if(adress.isEmpty() || contact.isEmpty()) {
-			ErrorAlert3();
+			ShowAlert.ERROR("Missing Info", "Enter shipping address and reciever's contact number");
 			return;
 		}
 		
 		if(accountCheckBox.isSelected()) {
 			
 		} else {
-			ErrorAlert2();
+			ShowAlert.ERROR("Error", "Please select a payment method.");
 			return;
 		}
 		
@@ -198,9 +205,9 @@ public class CheckoutController implements Initializable {
 			
 			accountBalanceLabel.setText("(" + Double.toString(getBalance()) + "$)");
 			
-			SuccessDialog();
+			ShowAlert.INFORMATION("Successful", "Purchase Successful");
 		} else {
-			ErrorAlert();
+			ShowAlert.ERROR("Error Purchasing", "Not enough balance");
 		}
 	}
 	
@@ -293,76 +300,24 @@ public class CheckoutController implements Initializable {
 		}
 	}
 	
-	public void ErrorAlert() {
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle("Error Purchasing");
-        alert.setHeaderText(null);
-        alert.setContentText("Not enough balance");
-
-        alert.showAndWait();
-    }
-	
-	public void ErrorAlert2() {
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText("Please select a payment method.");
-
-        alert.showAndWait();
-    }
-	
-	public void ErrorAlert3() {
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle("Missing Info");
-        alert.setHeaderText(null);
-        alert.setContentText("Enter shipping address and reciever's contact number");
-
-        alert.showAndWait();
-    }
-	
-	private void SuccessDialog() {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Successful");
-        alert.setHeaderText(null);
-        alert.setContentText("Purchase Successful");
-
-        alert.showAndWait();
-	}
 	
 	public void switchToDashboard (ActionEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("UserInterface.fxml"));
-		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show(); 
+		SceneSwitcher.switchTo(event, "UserInterface.fxml");
 	}
 	
 	public void switchToAccount (ActionEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("Account.fxml"));
-		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		SceneSwitcher.switchTo(event, "Account.fxml");
 	}
 	
 	public void switchToOrders (ActionEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("Orders.fxml"));
-		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		SceneSwitcher.switchTo(event, "Orders.fxml");
 	}
 	
 	public void switchToLogin (ActionEvent event) throws IOException {
-		Control control = new Control();
-		control.switchToLogin(event);
+		SceneSwitcher.switchTo(event, "Login.fxml", 450, 135);
 	}
 	
 	public void switchToCart (ActionEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("Cart.fxml"));
-		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		SceneSwitcher.switchTo(event, "Cart.fxml");
 	}
 }

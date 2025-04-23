@@ -13,17 +13,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 
 public class UserController implements Initializable {
 	
@@ -77,7 +72,6 @@ public class UserController implements Initializable {
 	        protected Void call() throws Exception {
 	            String query = "SELECT * FROM toppicks inner join products on toppicks.pid = products.id";
 	           
-	            
 	            try (PreparedStatement statement = Control.getConnection().prepareStatement(
 	                     query, 
 	                     ResultSet.TYPE_SCROLL_INSENSITIVE, 
@@ -232,7 +226,7 @@ public class UserController implements Initializable {
 			if(!str.isEmpty()) quantity = Integer.parseInt(str);
 			
 			if(quantity > available_product || quantity < 1) {
-				ErrorAlert();
+				ShowAlert.ERROR("Error","Not enough product in stock");
 				return;
 			}
 			
@@ -257,7 +251,7 @@ public class UserController implements Initializable {
 				statement.setString(3, Control.username);
 				
 				statement.execute();
-				SuccessDialog();
+				ShowAlert.INFORMATION("Successful", "Succesfully Added");
 			} else {
 				
 				subtractQuantity(quantity);
@@ -270,7 +264,8 @@ public class UserController implements Initializable {
 				statement.setInt(3, quantity);
 				
 				statement.execute();
-				SuccessDialog();
+				
+				ShowAlert.INFORMATION("Successful", "Succesfully Added");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -295,51 +290,19 @@ public class UserController implements Initializable {
 		}
 	}
 	
-	private void SuccessDialog() {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Successful");
-        alert.setHeaderText(null);
-        alert.setContentText("Succesfully Added");
-
-        alert.showAndWait();
-	}
-	
-	public void ErrorAlert() {
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle("Error adding to cart");
-        alert.setHeaderText(null);
-        alert.setContentText("Not enough product in stock");
-
-        alert.showAndWait();
-    }
-	
-	
 	public void switchToLogin (ActionEvent event) throws IOException {
-		Control object = new Control();
-		object.switchToLogin(event);
+		SceneSwitcher.switchTo(event, "Login.fxml", 450, 135);
 	}
 	
 	public void switchToAccount (ActionEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("Account.fxml"));
-		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		SceneSwitcher.switchTo(event, "Account.fxml");
 	}
 	
 	public void switchToOrders (ActionEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("Orders.fxml"));
-		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		SceneSwitcher.switchTo(event, "Orders.fxml");
 	}
 	
 	public void switchToCart (ActionEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("Cart.fxml"));
-		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		SceneSwitcher.switchTo(event, "Cart.fxml");
 	}
 }

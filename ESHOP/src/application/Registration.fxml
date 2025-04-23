@@ -20,7 +20,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button fx:id="loginn" layoutX="187.0" layoutY="334.0" mnemonicParsing="false" onAction="#switchToLogin" text="Login" />
+            <Button fx:id="loginn" layoutX="187.0" layoutY="334.0" mnemonicParsing="false" onAction="#switchToLogin" stylesheets="@application.css" text="Login" />
             <Label layoutX="260.0" layoutY="337.0" text="page." textFill="#1331d6">
                <font>
                   <Font size="14.0" />
@@ -41,12 +41,12 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="regName" layoutX="410.0" layoutY="51.0" prefHeight="26.0" prefWidth="172.0" />
-      <TextField fx:id="regemail" layoutX="410.0" layoutY="93.0" prefHeight="26.0" prefWidth="172.0" />
-      <TextField fx:id="reguserName" layoutX="410.0" layoutY="133.0" prefHeight="26.0" prefWidth="172.0" />
-      <PasswordField fx:id="regpass" layoutX="411.0" layoutY="174.0" prefHeight="26.0" prefWidth="172.0" />
-      <PasswordField fx:id="regpass2" layoutX="410.0" layoutY="212.0" prefHeight="26.0" prefWidth="172.0" />
-      <Button layoutX="380.0" layoutY="275.0" mnemonicParsing="false" onAction="#register" text="Register" />
+      <TextField fx:id="regName" layoutX="410.0" layoutY="51.0" prefHeight="26.0" prefWidth="172.0" stylesheets="@application.css" />
+      <TextField fx:id="regemail" layoutX="410.0" layoutY="93.0" prefHeight="26.0" prefWidth="172.0" stylesheets="@application.css" />
+      <TextField fx:id="reguserName" layoutX="410.0" layoutY="133.0" prefHeight="26.0" prefWidth="172.0" stylesheets="@application.css" />
+      <PasswordField fx:id="regpass" layoutX="411.0" layoutY="174.0" prefHeight="26.0" prefWidth="172.0" stylesheets="@application.css" />
+      <PasswordField fx:id="regpass2" layoutX="410.0" layoutY="212.0" prefHeight="26.0" prefWidth="172.0" stylesheets="@application.css" />
+      <Button layoutX="380.0" layoutY="275.0" mnemonicParsing="false" onAction="#register" stylesheets="@application.css" text="Register" />
       <Label fx:id="name" layoutX="279.0" layoutY="54.0" text="Your Name" textFill="#17d486">
          <font>
             <Font name="System Bold" size="16.0" />

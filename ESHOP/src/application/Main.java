@@ -17,13 +17,11 @@ public class Main extends Application {
 	public void start(Stage stage) {
 		try {
 
-			Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
-			String css = getClass().getResource("application.css").toExternalForm();
+			Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
 
 			Image icon = new Image(getClass().getResource("/Resources/icon.png").toExternalForm());
 			
 			Scene scene = new Scene(root);
-			scene.getStylesheets().add(css);
 			
 			stage.setScene(scene); stage.setResizable(false);
 			stage.setTitle("E Shop"); 

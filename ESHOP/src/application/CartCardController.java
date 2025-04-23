@@ -75,7 +75,7 @@ public class CartCardController {
     }
     
     public void setPrice(double price) {
-    	productPrice.setText(Double.toString(price));
+    	productPrice.setText(Double.toString(price) + "$");
     }
     
     public void setTotalPrice(double price) {

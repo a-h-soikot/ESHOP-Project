@@ -12,17 +12,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.scene.control.Alert.AlertType;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Control {
-	private Stage stage;
-	private Scene scene;
 	
 	private static final String url = "jdbc:mysql://localhost:3306/eshop";
 	private static Connection connection;
@@ -32,6 +28,7 @@ public class Control {
 			connection = DriverManager.getConnection(url, "root", "morodmiya");
 			System.out.println("Connection with local server established");
 		} catch (SQLException e) {
+	        System.out.println("Database connected failed");
 			e.printStackTrace();
 		}
 	}
@@ -92,7 +89,8 @@ public class Control {
 		String name = userName.getText();
 		String input_password = passWord.getText();
 		if (name.isEmpty() || input_password.isEmpty()) {
-			showLoginErrorAlert(); return ;
+			ShowAlert.ERROR("Login Error", "Wrong username or password. Please try again.");
+			return ;
 		}
 		
 		username = name;
@@ -111,14 +109,27 @@ public class Control {
 					System.out.println("Login Successful");
 					switchToDashboard(event);
 				} else {
-					showLoginErrorAlert();
+					ShowAlert.ERROR("Login Error", "Wrong username or password. Please try again.");
 				}
 			} else {
-				showLoginErrorAlert();
+				ShowAlert.ERROR("Login Error", "Wrong username or password. Please try again.");
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public void AdminLogin(ActionEvent event) throws IOException {
+		if(AdminpassWord.getText().equals("12345678")) {
+			Parent root = FXMLLoader.load(getClass().getResource("AdminInterface.fxml"));
+			Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.setX(200); stage.setY(80);
+			stage.show();
+		} else {
+			ShowAlert.ERROR("Login Error", "Wrong password. Please try again.");
 		}
 	}
 	
@@ -134,7 +145,8 @@ public class Control {
 			statement.setString(3, hashPassword(input_password)); statement.setString(4, mail);
 			
 			statement.execute();
-			showRegistrationSuccessDialog();
+			
+			ShowAlert.INFORMATION("Registration Successful", "Congratulations! Your registration was successful.\nReturn to Login page");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -169,119 +181,35 @@ public class Control {
 		String pass2 = regpass2.getText();
 		
 		if (name.isEmpty() || username.isEmpty() || mail.isEmpty() || pass.isEmpty()) {
-			showRegistrationErrorAlert3(); return ;
+			ShowAlert.ERROR("Registration Error", "Fields can't be empty, please fill up the form correctly");
+			return ;
 		}
 		
 		if(pass.equals(pass2)) {
 			if (isUnique(username)) {
 				insert_user(name, username, pass, mail);
 			} else {
-				showRegistrationErrorAlert2();
+				ShowAlert.ERROR("Registration Error", "Same username already exists, please try another one");
 			}
 		} else {
-			showRegistrationErrorAlert();
+			ShowAlert.ERROR("Registration Error", "Passwords don't match, please enter them correctly");
 		}
-	}
-	
-	public void showLoginErrorAlert() {
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle("Login Error");
-        alert.setHeaderText(null);
-        alert.setContentText("Wrong username or password. Please try again.");
-
-        alert.showAndWait();
-    }
-	
-	public void showRegistrationErrorAlert() {
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle("Registration Error");
-        alert.setHeaderText(null);
-        alert.setContentText("Passwords don't match, please enter them correctly");
-
-        alert.showAndWait();
-    }
-	
-	public void showRegistrationErrorAlert2() {
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle("Registration Error");
-        alert.setHeaderText(null);
-        alert.setContentText("Same username already exists, please use another one");
-
-        alert.showAndWait();
-    }
-	
-	public void showRegistrationErrorAlert3() {
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle("Registration Error");
-        alert.setHeaderText(null);
-        alert.setContentText("Field can't be empty, please fill up the form correctly");
-
-        alert.showAndWait();
-    }
-	
-	private void showRegistrationSuccessDialog() {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Registration Successful");
-        alert.setHeaderText(null);
-        alert.setContentText("Congratulations! Your registration was successful.\nReturn to Login page");
-
-        alert.showAndWait();
-	}
-	
-	public void switchToRegister (ActionEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("Registration.fxml"));
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		String css = this.getClass().getResource("application.css").toExternalForm();
-		
-		scene = new Scene(root);
-		scene.getStylesheets().add(css);
-		stage.setScene(scene);
-		stage.show(); 
-	}
-	
-	public void switchToDashboard (ActionEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("UserInterface.fxml"));
-		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.setX(200); stage.setY(80);
-		stage.show(); 
 	}
 	
 	public void switchToLogin (ActionEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		event.getSource(); 
-		String css = this.getClass().getResource("application.css").toExternalForm();
-		scene = new Scene(root);
-		scene.getStylesheets().add(css);
-		
-		stage.setScene(scene);
-		stage.setX(450); stage.setY(135);
-		stage.show(); 
+		SceneSwitcher.switchTo(event, "Login.fxml", 450, 135);
+	}
+	
+	public void switchToRegister (ActionEvent event) throws IOException {
+		SceneSwitcher.switchTo(event, "Registration.fxml");
+	}
+	
+	public void switchToDashboard (ActionEvent event) throws IOException {
+		SceneSwitcher.switchTo(event, "UserInterface.fxml", 200, 80);
 	}
 	
 	public void switchToAdmin (ActionEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("Admin.fxml"));
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		String css = this.getClass().getResource("application.css").toExternalForm();
-
-		scene = new Scene(root);
-		scene.getStylesheets().add(css);
-		stage.setScene(scene);
-		stage.show(); 
+		SceneSwitcher.switchTo(event, "Admin.fxml");
 	}
 	
-	public void AdminLogin(ActionEvent event) throws IOException {
-		if(AdminpassWord.getText().equals("12345678")) {
-			Parent root = FXMLLoader.load(getClass().getResource("AdminInterface.fxml"));
-			Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-			Scene scene = new Scene(root);
-			stage.setScene(scene);
-			stage.setX(200); stage.setY(80);
-			stage.show();
-		} else {
-			showLoginErrorAlert();
-		}
-	}
 }

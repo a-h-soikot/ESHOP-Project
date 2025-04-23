@@ -13,11 +13,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 
 public class AllOrdersController implements Initializable {
 
@@ -100,15 +97,10 @@ public class AllOrdersController implements Initializable {
 
 
 	public void switchToDashboard (ActionEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("AdminInterface.fxml"));
-		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		SceneSwitcher.switchTo(event, "AdminInterface.fxml");
 	}
 	
 	public void switchToLogin (ActionEvent event) throws IOException {
-		Control control = new Control();
-		control.switchToLogin(event);
+		SceneSwitcher.switchTo(event, "Login.fxml", 450, 135);
 	}
 }

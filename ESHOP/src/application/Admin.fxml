@@ -40,7 +40,7 @@
                   </LinearGradient>
                </textFill>
             </Label>
-            <PasswordField fx:id="AdminpassWord" layoutX="191.0" layoutY="172.0" prefHeight="25.0" prefWidth="178.0" />
+            <PasswordField fx:id="AdminpassWord" layoutX="191.0" layoutY="172.0" prefHeight="25.0" prefWidth="178.0" stylesheets="@application.css" />
             <Label layoutX="136.0" layoutY="103.0" text="Welcome Admin">
                <font>
                   <Font name="System Bold Italic" size="20.0" />
@@ -68,12 +68,12 @@
          <children>
             <ButtonBar prefHeight="50.0" prefWidth="166.0">
               <buttons>
-                <Button mnemonicParsing="false" onAction="#switchToLogin" text="User" />
+                <Button mnemonicParsing="false" onAction="#switchToLogin" stylesheets="@application.css" text="User" />
               </buttons>
             </ButtonBar>
             <ButtonBar prefHeight="50.0" prefWidth="182.0">
               <buttons>
-                <Button mnemonicParsing="false" text="Admin" />
+                <Button mnemonicParsing="false" stylesheets="@application.css" text="Admin" />
               </buttons>
             </ButtonBar>
          </children>
@@ -87,7 +87,7 @@
             </ImageView>
          </children>
       </VBox>
-      <Button fx:id="adminLoginButton" defaultButton="true" layoutX="415.0" layoutY="224.0" mnemonicParsing="false" onAction="#AdminLogin" text="Login">
+      <Button fx:id="adminLoginButton" defaultButton="true" layoutX="415.0" layoutY="224.0" mnemonicParsing="false" onAction="#AdminLogin" stylesheets="@application.css" text="Login">
          <font>
             <Font size="13.0" />
          </font>

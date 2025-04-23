@@ -11,12 +11,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 
 public class CartController implements Initializable {
 	
@@ -127,40 +124,22 @@ public class CartController implements Initializable {
 	}
 	
 	public void switchToCheckout (ActionEvent event) throws IOException {
-		
-		Parent root = FXMLLoader.load(getClass().getResource("Checkout.fxml"));
-		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		SceneSwitcher.switchTo(event, "Checkout.fxml");
 	}
 	
 	public void switchToDashboard (ActionEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("UserInterface.fxml"));
-		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show(); 
+		SceneSwitcher.switchTo(event, "UserInterface.fxml");
 	}
 	
 	public void switchToAccount (ActionEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("Account.fxml"));
-		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		SceneSwitcher.switchTo(event, "Account.fxml");
 	}
 	
 	public void switchToOrders (ActionEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("Orders.fxml"));
-		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		SceneSwitcher.switchTo(event, "Orders.fxml");
 	}
 	
 	public void switchToLogin (ActionEvent event) throws IOException {
-		Control control = new Control();
-		control.switchToLogin(event);
+		SceneSwitcher.switchTo(event, "Login.fxml", 450, 135);
 	}
 }
