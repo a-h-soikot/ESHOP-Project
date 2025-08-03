@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -24,12 +25,12 @@
                   <Font name="Elephant" size="24.0" />
                </font>
             </Label>
-            <HBox prefHeight="40.0" prefWidth="312.0" />
+            <HBox prefHeight="40.0" prefWidth="314.0" />
             <Pane maxHeight="41.0" prefHeight="41.0" prefWidth="226.0">
                <children>
-                  <Pane layoutX="350.0" layoutY="-3.0" prefHeight="40.0" prefWidth="254.0">
+                  <Pane layoutX="350.0" layoutY="-3.0" prefHeight="40.0" prefWidth="226.0">
                      <children>
-                        <Label alignment="CENTER_RIGHT" layoutX="-32.0" layoutY="8.0" prefHeight="25.0" prefWidth="216.0" text="Admin" textFill="WHITE">
+                        <Label alignment="CENTER_RIGHT" layoutX="29.0" layoutY="8.0" prefHeight="25.0" prefWidth="155.0" text="Admin" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -41,6 +42,21 @@
                         </ImageView>
                      </children>
                   </Pane>
+                  <TextField fx:id="searchText" layoutX="-137.0" layoutY="4.0" prefHeight="32.0" prefWidth="277.0" promptText="Search">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <Button layoutX="140.0" layoutY="4.0" mnemonicParsing="false" onAction="#orderSearch" prefHeight="3.0" prefWidth="46.0" style="-fx-background-color: #00aaff;" styleClass="hand" text="🔍">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" layoutX="199.0" layoutY="4.0" mnemonicParsing="false" onAction="#onFilterClicked" prefHeight="29.0" style="-fx-background-color: white;" text="Filter">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
          </children>

@@ -154,9 +154,9 @@ public class AdminController implements Initializable {
         alert.showAndWait();
     }
     
-    public void switchToLogin(ActionEvent event) throws IOException {
-    	SceneSwitcher.switchTo(event, "Login.fxml");
-    }
+    public void switchToLogin (ActionEvent event) throws IOException {
+		SceneSwitcher.switchTo(event, "Login.fxml", 450, 135);
+	}
     
     public void switchToAllOrders (ActionEvent event) throws IOException {
     	SceneSwitcher.switchTo(event, "AllOrders.fxml");

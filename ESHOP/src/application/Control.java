@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+// This class controls login and registration
 public class Control {
 	
 	private static final String url = "jdbc:mysql://localhost:3306/eshop";
@@ -32,7 +33,7 @@ public class Control {
 			e.printStackTrace();
 		}
 	}
-	 
+	
 	public static Connection getConnection() {
 		return connection;
 	}
