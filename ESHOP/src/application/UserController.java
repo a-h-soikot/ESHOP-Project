@@ -44,6 +44,11 @@ public class UserController implements Initializable {
     private TextField quantityField;
     
     @FXML
+    private TextField searchText;
+    
+    public static String searchString;
+    
+    @FXML
     private Label availableLabel;
     
     @FXML
@@ -288,6 +293,25 @@ public class UserController implements Initializable {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@FXML
+	public void onSearchButtonClick(ActionEvent event) throws IOException {
+		if(searchText == null || searchText.getText().trim().isEmpty()) {
+			return;
+		}
+		searchString = searchText.getText().trim().toLowerCase();
+		
+		SceneSwitcher.switchTo(event, "Search.fxml");
+	}
+	
+	@FXML
+	public void onFilterButtonClick() {
+		
+	}
+	
+	public static String getSearchString () {
+		return searchString;
 	}
 	
 	public void switchToLogin (ActionEvent event) throws IOException {
