@@ -12,7 +12,7 @@ The application allows users to browse products, manage a shopping cart, place o
 
 ---
 
-## 🚀 Features
+## Features
 
 ### 🔐 Security & Authentication
 - Secure user **authentication** system  
